@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription</title>
+    <link rel="stylesheet" href="css/bootstrap-quartz.min.css">
+</head>
+<body onload="dupliquer()">
+    
+        <h2 class="text-center">Formulaire d'inscription</h2>
+        <form action="exo-php-form.php" method="post">
+            <div class="row m-3">
+                <div class="col-md-4">
+                    <fieldset>
+                        <legend>Etat civil</legend>
+                        <label for="civilite">Civilité</label><br>
+                        <select name="civilite" id="civilite">
+                            <option value="M.">M.</option>
+                            <option value="Mme">Mme</option>
+                            <option value="Mlle">Mlle</option>
+                        </select><br>
+                        <label for="nom">Nom</label><br>
+                        <input type="text" name="nom" id="nom"><br>
+                        <label for="prenom">Prénom</label><br>
+                        <input type="text" name="prenom" id="prenom"><br>
+                        <label for="ddn">Date de naissance</label><br>
+                        <input type="date" name="ddn" id="ddn"><br>
+                        <label for="commune">Commune de naissance</label><br>
+                        <input type="text" name="commune" id="commune" disabled><br>
+                        <select name="comm" id="comm" onchange="dupliquer()">
+                            <option value="Cergy">Cergy</option>
+                            <option value="Paris 18">Paris 18</option>
+                            <option value="Beauvais">Beauvais</option>
+                        </select><br>
+                    </fieldset>
+                </div>
+                <div class="col-md-8">
+                    <fieldset>
+                        <legend>Coordonnées</legend>
+                        <label for="telephone">Téléphone</label><br>
+                        <input type="text" name="telephone" id="telephone"><br>
+                        <label for="mail">Courriel</label><br>
+                        <input type="email" name="mail" id="mail"><br>
+                        <label for="site">Site web</label><br>
+                        <input type="text" name="site" id="site"><br>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Compétences</legend>
+                        <label for="niveau">Niveau d'anglais : </label>
+                        <label><input type="radio" name="niveau" id="niveau"> C1 </label>
+                        <label><input type="radio" name="niveau" id="niveau"> B1 </label>
+                        <label><input type="radio" name="niveau" id="niveau"> A1 </label>
+                        <br>
+                        <label for="niveau">Langages informatiques : </label>
+                        <label><input type="checkbox" name="lgge[]" > HTML </label>
+                        <label><input type="checkbox" name="lgge[]" > CSS </label>
+                        <label><input type="checkbox" name="lgge[]" > JavaScript </label>
+                        <label><input type="checkbox" name="lgge[]" > PHP </label>
+                    </fieldset>
+                    <input type="submit" value="Envoyer">
+                    <input type="reset" value="Effacer">
+                </div>
+            </div>
+        </form>
+        <script>
+            function dupliquer(){
+                var lst, txt;
+                lst = document.getElementById('comm');
+                txt = lst.options[lst.selectedIndex].text;
+                document.getElementById('commune').value = txt;
+            }
+        </script>
+</body>
+</html>
