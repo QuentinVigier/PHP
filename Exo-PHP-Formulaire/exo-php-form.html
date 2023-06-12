@@ -26,7 +26,7 @@
                         <label for="ddn">Date de naissance</label><br>
                         <input type="date" name="ddn" id="ddn"><br>
                         <label for="commune">Commune de naissance</label><br>
-                        <input type="text" name="commune" id="commune" disabled><br>
+                        <input type="text" name="commune" id="commune"><br>
                         <select name="comm" id="comm" onchange="dupliquer()">
                             <option value="Cergy">Cergy</option>
                             <option value="Paris 18">Paris 18</option>
@@ -41,21 +41,21 @@
                         <input type="text" name="telephone" id="telephone"><br>
                         <label for="mail">Courriel</label><br>
                         <input type="email" name="mail" id="mail"><br>
-                        <label for="site">Site web</label><br>
-                        <input type="text" name="site" id="site"><br>
+                        <label for="web">Site web</label><br>
+                        <input type="text" name="web" id="web"><br>
                     </fieldset>
                     <fieldset>
                         <legend>Compétences</legend>
                         <label for="niveau">Niveau d'anglais : </label>
-                        <label><input type="radio" name="niveau" id="niveau"> C1 </label>
-                        <label><input type="radio" name="niveau" id="niveau"> B1 </label>
-                        <label><input type="radio" name="niveau" id="niveau"> A1 </label>
+                        <label><input type="radio" name="niveau" id="niveau" value="C1"> C1 </label>
+                        <label><input type="radio" name="niveau" id="niveau" value="B1"> B1 </label>
+                        <label><input type="radio" name="niveau" id="niveau" value="A1"> A1 </label>
                         <br>
                         <label for="niveau">Langages informatiques : </label>
-                        <label><input type="checkbox" name="lgge[]" > HTML </label>
-                        <label><input type="checkbox" name="lgge[]" > CSS </label>
-                        <label><input type="checkbox" name="lgge[]" > JavaScript </label>
-                        <label><input type="checkbox" name="lgge[]" > PHP </label>
+                        <label><input type="checkbox" name="lgge[]" value="HTML" > HTML </label>
+                        <label><input type="checkbox" name="lgge[]" value="CSS"> CSS </label>
+                        <label><input type="checkbox" name="lgge[]" value="JavaScript"> JavaScript </label>
+                        <label><input type="checkbox" name="lgge[]" value="PHP"> PHP </label>
                     </fieldset>
                     <input type="submit" value="Envoyer">
                     <input type="reset" value="Effacer">
