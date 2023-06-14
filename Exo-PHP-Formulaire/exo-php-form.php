@@ -56,7 +56,9 @@
     
     echo "</table>";
 
-;
+    header('location : ./php-compte.html');
+    // header("location: " . $_SERVER['PHP_SELF']);
 
 // }
+?>
 
