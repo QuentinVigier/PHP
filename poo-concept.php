@@ -49,6 +49,7 @@ $x = 5; // Varibles hors class
             $this->setSalaire($nouveauxSalaire);
             return $nouveauxSalaire;
         }
+        public abstract function calculer();
     }
     //echo $_prenom; // FAUX
     // ATTENTION : On ne manipule pas les classes, il faut passer par un objet.
@@ -59,7 +60,8 @@ $x = 5; // Varibles hors class
     echo $p1->getPrenom() . "<br>";
     echo $p1->getNom();
     echo "<br>";
-    $p1->afficherInfo();   
+    $p1->afficherInfo();  
+    echo "<br>";
     $p2->afficherInfo();  
     echo "<br>";
 
@@ -67,3 +69,46 @@ $x = 5; // Varibles hors class
     //Créer une fonction reduireSalaire($pourcentage)
     echo "Le nouveau salaire après sanction : ".$p1->reduireSalaire(20)."<br>";
     echo $p1->getSalaire();
+    echo "<br>";
+        class Homme extends Personne{
+        // Attributs
+
+        protected $serviceMilitaire = FALSE;
+        // Le constructeur: permet de créer des objets en assignant des valeurs.
+        public function __construct($prenom,$nom,$age,$fonction,$salaire,$serviceMilitaire)
+        {
+            parent::__construct($prenom,$nom,$age,$fonction,$salaire);
+            $this->_service = $serviceMilitaire;
+        }
+        // GETTERS / SETTERS
+        public function getServiceMilitaire(){return $this->_serviceMilitaire;}
+        public function setService($newServiceMilitaire){$this->_serviceMilitaire = $newserviceMilitaire;}
+
+        public function afficherInfos(){
+            if($this->getServiceMilitaire()){
+                $service = "!VALIDER!";
+            }else{
+                $service = "!NON VALIDER!";
+            }
+            return parent::afficherInfo() . ". Mes services militaires sont " . $service;
+        }
+    }
+    $h1 = new Homme("Jean", "Dujardin", 56, "Acteur", 9900, true);
+    $h1 ->afficherInfo();
+    $h1 ->reduireSalaire(20);
+    echo $h1 ->getSalaire();
+
+
+            class Femme extends Personne{
+
+        protected $conge = TRUE;
+        // Le constructeur: permet de créer des objets en assignant des valeurs.
+        public function __construct($prenom,$nom,$age,$fonction,$salaire,$conge)
+        {
+            parent::__construct($prenom,$nom,$age,$fonction,$salaire);
+            $this->_conge = $conge;
+        }
+
+        public function getConge(){return $this->_conge;}
+        public function setConge($newConge){$this->_conge = $newConge;}
+    }
