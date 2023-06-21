@@ -9,7 +9,7 @@
 */
 $x = 5; // Varibles hors class
 
-    class Personne{
+    abstract class Personne{
         // Attributs
         // Modificateurs : public, private, protected
         protected $_prenom = "Paul";
@@ -42,49 +42,49 @@ $x = 5; // Varibles hors class
 
         // Méthodes
         public function afficherInfo(){
-            echo "Je suis ". $this->getPrenom() . " ". $this->getNom();
+            echo "Je suis ". $this->getPrenom() . " ". $this->getNom(). " : ";
         }
         public function reduireSalaire($pourcentage){
             $nouveauxSalaire = $this->getSalaire() - ( $this->getSalaire() * ( $pourcentage /100));
             $this->setSalaire($nouveauxSalaire);
             return $nouveauxSalaire;
         }
-        public abstract function calculer();
+        public abstract function calculer($a, $b);
     }
     //echo $_prenom; // FAUX
     // ATTENTION : On ne manipule pas les classes, il faut passer par un objet.
-    $p1 = new Personne("Cherlock","Holmes",77,"Détective",5600); // instanciation par défaut de la classe Personne
-    $p2 = new Personne("Naruto","Uzumaki",19,"Hokage",500);
-    echo $p1->getPrenom() . "<br>";
-    $p1->setPrenom("ABCD");
-    echo $p1->getPrenom() . "<br>";
-    echo $p1->getNom();
-    echo "<br>";
-    $p1->afficherInfo();  
-    echo "<br>";
-    $p2->afficherInfo();  
-    echo "<br>";
+    // $p1 = new Personne("Cherlock","Holmes",77,"Détective",5600); // instanciation par défaut de la classe Personne
+    // $p2 = new Personne("Naruto","Uzumaki",19,"Hokage",500);
+    // echo $p1->getPrenom() . "<br>";
+    // $p1->setPrenom("ABCD");
+    // echo $p1->getPrenom() . "<br>";
+    // echo $p1->getNom();
+    // echo "<br>";
+    // $p1->afficherInfo();  
+    // echo "<br>";
+    // $p2->afficherInfo();  
+    // echo "<br>";
 
-        echo "Salaire actuel : ".$p1->getSalaire()."<br>";
-    //Créer une fonction reduireSalaire($pourcentage)
-    echo "Le nouveau salaire après sanction : ".$p1->reduireSalaire(20)."<br>";
-    echo $p1->getSalaire();
-    echo "<br>";
+    //     echo "Salaire actuel : ".$p1->getSalaire()."<br>";
+    // //Créer une fonction reduireSalaire($pourcentage)
+    // echo "Le nouveau salaire après sanction : ".$p1->reduireSalaire(20)."<br>";
+    // echo $p1->getSalaire();
+    // echo "<br>";
         class Homme extends Personne{
         // Attributs
 
-        protected $serviceMilitaire = FALSE;
+        protected $_serviceMilitaire = FALSE;
         // Le constructeur: permet de créer des objets en assignant des valeurs.
         public function __construct($prenom,$nom,$age,$fonction,$salaire,$serviceMilitaire)
         {
-            parent::__construct($prenom,$nom,$age,$fonction,$salaire);
-            $this->_service = $serviceMilitaire;
+            parent::__construct($prenom,$nom,$age,$fonction,$salaire,$serviceMilitaire);
+            $this->_serviceMilitaire = $serviceMilitaire;
         }
         // GETTERS / SETTERS
         public function getServiceMilitaire(){return $this->_serviceMilitaire;}
-        public function setService($newServiceMilitaire){$this->_serviceMilitaire = $newserviceMilitaire;}
+        public function setServiceMilitaire($newServiceMilitaire){$this->_serviceMilitaire = $newserviceMilitaire;}
 
-        public function afficherInfos(){
+        public function afficherInfo(){
             if($this->getServiceMilitaire()){
                 $service = "!VALIDER!";
             }else{
@@ -92,23 +92,43 @@ $x = 5; // Varibles hors class
             }
             return parent::afficherInfo() . ". Mes services militaires sont " . $service;
         }
+        public function calculer($a, $b){
+            return $a - $b;
+        }
     }
     $h1 = new Homme("Jean", "Dujardin", 56, "Acteur", 9900, true);
     $h1 ->afficherInfo();
     $h1 ->reduireSalaire(20);
     echo $h1 ->getSalaire();
+    echo "<br>";
 
 
             class Femme extends Personne{
 
-        protected $conge = TRUE;
+        protected $congeMaternite = 0;
         // Le constructeur: permet de créer des objets en assignant des valeurs.
-        public function __construct($prenom,$nom,$age,$fonction,$salaire,$conge)
+        public function __construct($prenom,$nom,$age,$fonction,$salaire,$congeMaternite)
         {
-            parent::__construct($prenom,$nom,$age,$fonction,$salaire);
-            $this->_conge = $conge;
+            parent::__construct($prenom,$nom,$age,$fonction,$salaire,$congeMaternite);
+            $this->_congeMaternite = $congeMaternite;
         }
-
-        public function getConge(){return $this->_conge;}
-        public function setConge($newConge){$this->_conge = $newConge;}
+        public function getCongeMaternite(){return $this->_congeMaternite;}
+        public function setCongeMaternite($newCongeMaternite){$this->_congeMaternite = $newCongeMaternite;}
+        public function afficherInfo(){
+            if($this->getCongeMaternite() > 0){
+                $conge = "!Congés pris au moins une fois.!";
+            }else{
+                $conge = "!Congés pas encore pris.!";
+            }
+            return parent::afficherInfo() . "." . $conge;
+        }
+        public function calculer($a, $b){
+            return $a + $b;
+        }
     }
+    $f1 = new Femme("Alexandra", "Lamy", 56, "Actrice", 9900, 3);
+    $f1->afficherInfo();
+    $f1->reduireSalaire(30);
+    echo $f1->getSalaire();
+    echo "<br>";
+    echo $f1->calculer(7,3);
